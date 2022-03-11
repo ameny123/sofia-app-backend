@@ -98,7 +98,7 @@ router.post('/fromCSV', async (req, res) => {
 router.get('/:id', async (req, res) => {
   console.log('req.params.id', req.params.id);
   try {
-    const student = await Students.find().where(resumeref, req.params.id);
+    const student = await Students.findById({ _id: req.params.id });
     res.send({ student });
   } catch (err) {
     res.status(404).send({ message: 'Student not found!' });
@@ -111,6 +111,7 @@ router.get('/:id', async (req, res) => {
 // @desc    Update a student
 // @access  Public
 router.put('/:id', async (req, res) => {
+  console.log('req update', req.body);
   try {
     const updatedStudent = await Students.findByIdAndUpdate(req.params.id, req.body);
     res.send({ message: 'The student was updated' });
