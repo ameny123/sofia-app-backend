@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
 // @desc    Create a student
 // @access  Public
 router.post('/', multer, async (req, res) => {
-  console.log('req', req);
+  console.log('req', req.body);
   try {
     const newStudent = await Students.create({
       idS: req.body.idS,
@@ -43,7 +43,7 @@ router.post('/', multer, async (req, res) => {
       availability: req.body.availability,
       date: req.body.dateS,
       skills: req.body.skills,
-      resume: `${req.protocol}://${req.get('host')}/resumes/${req.file.filename}`
+      // resume: `${req.protocol}://${req.get('host')}/resumes/${req.file.filename}`
     });
     res.send({ newStudent });
   } catch (err) {
