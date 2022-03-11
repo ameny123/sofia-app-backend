@@ -33,8 +33,6 @@ router.get('/', async (req, res) => {
 // @access  Public
 router.post('/', multer, async (req, res) => {
   console.log('req', req);
-  const file = req.file;
-  console.log('file', file);
   try {
     const newStudent = await Students.create({
       idS: req.body.idS,
